@@ -100,7 +100,7 @@ export default function SignupPage() {
                 </button>
 
                 {/* Link */}
-                <p className="text-center mt-4 text-sm">
+                <p className="text-center mt-4 text-sm text-black">
                     Already have an account?{" "}
                     <Link href="/login" className="text-blue-500 hover:underline">
                         Login

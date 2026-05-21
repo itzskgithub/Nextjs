@@ -78,7 +78,7 @@ export default function LoginPage(){
                 >Login</button>
 
                 {/* Link */}
-                <p className="text-center mt-4 text-sm">
+                <p className="text-center mt-4 text-sm text-black">
                     New User?{" "}
                     <Link href="/signup"
                     className="text-blue-500 hover:underline">Signup</Link>
