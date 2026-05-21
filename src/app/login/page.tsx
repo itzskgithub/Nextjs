@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useRouter} from "next/navigation";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function LoginPage(){
     const router = useRouter();
@@ -11,13 +12,30 @@ export default function LoginPage(){
         email: "",
         password: "",
     });
+
+    const [buttonDisabled, setButtonDisabled] = useState(true);
+
     const onLogin = async() => {
         try {
-            console.log(user);
-        } catch (error) {
-            console.log(error);
+            const response = await axios.post("/api/users/login", user);
+            console.log("login success", response.data);
+            toast.success("login success");
+            router.push("/profile")
+        } catch (error: any) {
+            console.log("Login failed", error.message);
+            toast.error(error.message);
         }
     };
+
+    useEffect(() => {
+        if(user.email.length > 0 && user.password.length > 0){
+            setButtonDisabled(false);
+        }
+        else{
+            setButtonDisabled(true);
+        }
+    }, [user]);
+
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
